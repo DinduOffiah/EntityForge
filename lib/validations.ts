@@ -24,3 +24,14 @@ export const projectSchema = z.object({
 });
 
 export type ProjectFormValues = z.infer<typeof projectSchema>;
+
+export const milestoneSchema = z.object({
+  title: z.string().min(3, "Title is required"),
+  description: z.string().optional(),
+  startDate: z.string().min(1, "Start date is required"),
+  endDate: z.string().min(1, "End date is required"),
+  status: z.enum(["not_started", "in_progress", "completed", "delayed"]),
+  progress: z.coerce.number().min(0).max(100),
+});
+
+export type MilestoneFormValues = z.infer<typeof milestoneSchema>;
