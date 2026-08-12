@@ -29,6 +29,10 @@ interface EntityState {
     milestoneId: string,
     data: Partial<Milestone>
   ) => void;
+  
+  
+  addDocument: (subsidiaryId: string, projectId: string, document: Document) => void;
+  deleteDocument: (subsidiaryId: string, projectId: string, documentId: string) => void;
 }
 
 export const useEntityStore = create<EntityState>()(
@@ -120,6 +124,41 @@ export const useEntityStore = create<EntityState>()(
                           milestones: p.milestones.map((m) =>
                             m.id === milestoneId ? { ...m, ...data } : m
                           ),
+                        }
+                      : p
+                  ),
+                }
+              : s
+          ),
+        })),
+
+      addDocument: (subsidiaryId, projectId, document) =>
+        set((state) => ({
+          subsidiaries: state.subsidiaries.map((s) =>
+            s.id === subsidiaryId
+              ? {
+                  ...s,
+                  projects: s.projects.map((p) =>
+                    p.id === projectId
+                      ? { ...p, documents: [...p.documents, document] }
+                      : p
+                  ),
+                }
+              : s
+          ),
+        })),
+
+      deleteDocument: (subsidiaryId, projectId, documentId) =>
+        set((state) => ({
+          subsidiaries: state.subsidiaries.map((s) =>
+            s.id === subsidiaryId
+              ? {
+                  ...s,
+                  projects: s.projects.map((p) =>
+                    p.id === projectId
+                      ? {
+                          ...p,
+                          documents: p.documents.filter((d) => d.id !== documentId),
                         }
                       : p
                   ),

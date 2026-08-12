@@ -35,3 +35,12 @@ export const milestoneSchema = z.object({
 });
 
 export type MilestoneFormValues = z.infer<typeof milestoneSchema>;
+
+export const documentSchema = z.object({
+  name: z.string().min(2, "Document name is required"),
+  type: z.string().min(1, "File type is required"),
+  size: z.string().min(1, "File size is required"),
+  uploadedBy: z.string().min(2, "Uploader name is required"),
+});
+
+export type DocumentFormValues = z.infer<typeof documentSchema>;

@@ -9,7 +9,7 @@ import MilestoneTimeline from "@/components/ui/MilestoneTimeline";
 export default function ProjectDetailPage() {
   const params = useParams();
   const router = useRouter();
-  const { subsidiaries, currentUserRole } = useEntityStore();
+  const { subsidiaries, currentUserRole, deleteDocument } = useEntityStore();
 
   const subsidiaryId = params.id as string;
   const projectId = params.projectId as string;
@@ -133,6 +133,56 @@ export default function ProjectDetailPage() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Documents Section */}
+      <div className="mt-12">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold">Documents</h2>
+
+          {canEdit && (
+            <Link
+              href={`/subsidiaries/${subsidiaryId}/projects/${projectId}/documents/new`}
+              className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-sm px-3 py-2 rounded-lg transition"
+            >
+              <Plus className="w-4 h-4" />
+              Upload Document
+            </Link>
+          )}
+        </div>
+
+        {project.documents.length === 0 ? (
+          <div className="text-center py-12 border border-dashed border-slate-800 rounded-xl">
+            <p className="text-slate-500 text-sm">No documents uploaded yet</p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {project.documents.map((doc) => (
+              <div
+                key={doc.id}
+                className="flex items-center justify-between bg-slate-900 border border-slate-800 rounded-xl p-4"
+              >
+                <div>
+                  <p className="font-medium">{doc.name}</p>
+                  <p className="text-xs text-slate-500 mt-1">
+                    {doc.type.toUpperCase()} • {doc.size} • Uploaded by {doc.uploadedBy}
+                  </p>
+                </div>
+
+                {canEdit && (
+                  <button
+                    onClick={() =>
+                      deleteDocument(subsidiaryId, projectId, doc.id)
+                    }
+                    className="text-xs text-red-400 hover:text-red-300"
+                  >
+                    Delete
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
