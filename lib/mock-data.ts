@@ -1,0 +1,107 @@
+import { Subsidiary } from "./types";
+
+export const mockSubsidiaries: Subsidiary[] = [
+  {
+    id: "sub-1",
+    name: "Nexus Digital Solutions",
+    industry: "Technology",
+    country: "Nigeria",
+    foundedYear: 2018,
+    website: "https://nexusdigital.example",
+    status: "active",
+    projects: [
+      {
+        id: "proj-1",
+        name: "Complete Brand Overhaul 2026",
+        type: "rebranding",
+        description: "Full visual identity and website rebrand",
+        startDate: "2026-01-15",
+        targetEndDate: "2026-08-30",
+        status: "active",
+        milestones: [
+          {
+            id: "ms-1",
+            title: "Brand Strategy Finalized",
+            startDate: "2026-01-15",
+            endDate: "2026-02-28",
+            status: "completed",
+            progress: 100,
+          },
+          {
+            id: "ms-2",
+            title: "Logo & Visual Identity",
+            startDate: "2026-03-01",
+            endDate: "2026-04-30",
+            status: "in_progress",
+            progress: 65,
+          },
+          {
+            id: "ms-3",
+            title: "Website Redesign & Launch",
+            startDate: "2026-05-01",
+            endDate: "2026-08-15",
+            status: "not_started",
+            progress: 0,
+          },
+        ],
+        documents: [
+          {
+            id: "doc-1",
+            name: "Brand Guidelines v2.pdf",
+            type: "pdf",
+            uploadedAt: "2026-02-20",
+            uploadedBy: "Aisha Bello",
+            size: "4.2 MB",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "sub-2",
+    name: "GreenHarvest Agro",
+    industry: "Agriculture",
+    country: "Ghana",
+    foundedYear: 2015,
+    status: "active",
+    projects: [
+      {
+        id: "proj-2",
+        name: "Digital Supply Chain Platform",
+        type: "digital_implementation",
+        description: "Implement end-to-end digital tracking for produce",
+        startDate: "2026-03-01",
+        targetEndDate: "2026-12-15",
+        status: "active",
+        milestones: [
+          {
+            id: "ms-4",
+            title: "Requirements Gathering",
+            startDate: "2026-03-01",
+            endDate: "2026-04-15",
+            status: "completed",
+            progress: 100,
+          },
+          {
+            id: "ms-5",
+            title: "MVP Development",
+            startDate: "2026-04-20",
+            endDate: "2026-09-30",
+            status: "in_progress",
+            progress: 40,
+          },
+        ],
+        documents: [],
+      },
+    ],
+  },
+  {
+    id: "sub-3",
+    name: "Apex Logistics Group",
+    industry: "Logistics",
+    country: "Kenya",
+    foundedYear: 2012,
+    status: "active",
+    projects: [],
+  },
+];
